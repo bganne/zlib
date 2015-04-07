@@ -1,0 +1,74 @@
+COIN bib
+[lock-mppa] Locking: PID 3827 doesn't exist, re initialize lock
+[mppa-lock] restarting myself
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 1112610B to 438940B (ratio = 39.45%) in 91655229 cycles (82.38c/B, 0.0388451Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN book1
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 7687710B to 3652680B (ratio = 47.51%) in 842507310 cycles (109.6c/B, 0.0291994Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN book2
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 6108560B to 2489290B (ratio = 40.75%) in 541731880 cycles (88.68c/B, 0.0360831Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN geo
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 1024000B to 698780B (ratio = 68.24%) in 182747529 cycles (178.5c/B, 0.0179307Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN news
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 3771090B to 1643000B (ratio = 43.57%) in 346625370 cycles (91.92c/B, 0.0348142Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN obj1
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 215040B to 107020B (ratio = 49.77%) in 19613553 cycles (91.21c/B, 0.0350843Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN obj2
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 2468140B to 934810B (ratio = 37.88%) in 200677420 cycles (81.31c/B, 0.0393569Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN paper1
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 531610B to 216050B (ratio = 40.64%) in 43324763 cycles (81.5c/B, 0.0392651Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN paper2
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 821990B to 350920B (ratio = 42.69%) in 76008699 cycles (92.47c/B, 0.0346061Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN paper3
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 465260B to 208120B (ratio = 44.73%) in 43455323 cycles (93.4c/B, 0.0342612Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN paper4
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 132860B to 60660B (ratio = 45.66%) in 12655843 cycles (95.26c/B, 0.0335933Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN paper5
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 119540B to 54170B (ratio = 45.32%) in 11019953 cycles (92.19c/B, 0.0347123Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN paper6
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 381050B to 152750B (ratio = 40.09%) in 30605062 cycles (80.32c/B, 0.0398418Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN pic
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 5132160B to 655710B (ratio = 12.78%) in 201283800 cycles (39.22c/B, 0.0815908Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN progc
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 396110B to 154490B (ratio = 0039%) in 30490992 cycles (76.98c/B, 0.0415714Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN progl
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 716460B to 200320B (ratio = 27.96%) in 43118577 cycles (60.18c/B, 0.0531713Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN progp
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 493790B to 133760B (ratio = 27.09%) in 27525752 cycles (55.74c/B, 0.0574054Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
+COIN trans
+[lock-mppa] Locking: success, installed signal handlers
+Cluster0@0.0: 16: Compressed 936950B to 239600B (ratio = 25.57%) in 49171843 cycles (52.48c/B, 0.0609747Gbps)
+[mppa-lock] Removing lock. Exit: ENO_SUCCESS(0)
