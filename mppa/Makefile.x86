@@ -1,0 +1,20 @@
+CFLAGS:=-Wall -Werror -g -O2
+LDFLAGS:=-g
+LDLIBS:=-lz
+
+bin:=$(addprefix speed_, $(basename $(notdir $(wildcard LargeCalgaryCorpus/*))))
+
+all: $(bin)
+
+speed_%: speed_%.o
+
+speed_%.o: speed.c calgary_%.h
+	$(CC) $(CPPFLAGS) $(CFLAGS) -include calgary_$*.h -o $@ -c $<
+
+calgary_%.h: LargeCalgaryCorpus/%
+	echo -n "static const char calgary[] = {" > $@
+	hexdump -v -e '/1 "0x%02x,"' $< >> $@
+	echo "};" >> $@
+
+clean:
+	$(RM) speed_* speed_*.o calgary_*.h
