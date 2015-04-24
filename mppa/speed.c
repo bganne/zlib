@@ -1,13 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <omp.h>
 #include <zlib.h>
+
+#define NUM		10
+#define BUFLEN	16384
+#define THREADS	16
+#define FREQ	0.4
+
+#define CYCLE_NS	(1/FREQ)
 
 #ifdef __k1__
 #include <HAL/hal/hal.h>
+#define STACKSZ	(20*1024)
+#define CONFIGURE_MINIMUM_TASK_STACK_SIZE	STACKSZ
+#define ONFIGURE_DEFAULT_TASK_STACK_SIZE	STACKSZ
+#define CONFIGURE_AMP_MAIN_STACK_SIZE		STACKSZ
 #include <mppa/osconfig.h>
 #define cycles()	__k1_read_dsu_timestamp()
-#define CYCLE_NS	(1/0.4)
 #else	/* __k1__ */
 unsigned long long rdtsc(void)
 {
@@ -16,11 +27,7 @@ unsigned long long rdtsc(void)
 	return ((unsigned long long)tickh << 32)|tickl;
 }
 #define cycles()	rdtsc()
-#define CYCLE_NS	(1/1.8)
 #endif
-
-#define NUM		10
-#define BUFLEN	16384
 
 static void *myalloc(void *q, unsigned n, unsigned m)
 {
@@ -40,7 +47,8 @@ static int init(z_stream *strm)
 	strm->zalloc = myalloc;
 	strm->zfree = myfree;
 	strm->opaque = Z_NULL;
-	return deflateInit2(strm, 1, 8, 15 + 16, 8, 0);
+	/* default: deflateInit2(strm, 1, 8, 15, 8, 0) */
+	return deflateInit2(strm, 1, 8, 12, 5, 0);
 }
 
 static int finish(void *out, int olen, z_stream *strm)
@@ -75,8 +83,8 @@ static int comp(void *out, int olen, z_stream *strm, const void *in, int ilen)
 
 static int test(void)
 {
-	static char buf[BUFLEN];
-	static z_stream strm;
+	char buf[BUFLEN];
+	z_stream strm;
 
 	int err = init(&strm);
 	if (Z_OK != err) {
@@ -91,16 +99,21 @@ static int test(void)
 
 int main(void)
 {
-	int i;
-	long long start = cycles();
-	unsigned long len = 0;
-	for (i=0; i<NUM; i++) {
-		len += test();
-	}
-	long long cy = cycles() - start;
+#pragma omp parallel num_threads(THREADS)
+	{
+		int i;
+		long long start = cycles();
+		unsigned long len = 0;
+		for (i=0; i<NUM; i++) {
+			len += test();
+		}
+		long long cy = cycles() - start;
 #define SZ	(NUM*sizeof(calgary))
-	printf("Compressed %luB to %luB (ratio = %04.4g%%) in %lli cycles (%04.4gc/B, %gGbps)\n",
-			SZ, len, (100.0*len)/SZ, cy,
-			(double)cy/SZ, (8*SZ)/(cy*CYCLE_NS));
+#pragma omp critical
+		printf("[%i] Compressed %luB to %luB (ratio = %04.4g%%) in %lli cycles (%04.4gc/B, %gGbps)\n",
+				(int)omp_get_thread_num(),
+				SZ, len, (100.0*len)/SZ, cy,
+				(double)cy/SZ, (8*SZ)/(cy*CYCLE_NS));
+	}	/* end of parallel */
 	return 0;
 }

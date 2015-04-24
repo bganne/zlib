@@ -1,9 +1,9 @@
 SHELL := /bin/bash
 K1_TOOLCHAIN_DIR := $(shell echo $${K1_TOOLCHAIN_DIR:-/usr/local/k1tools})
 
-cflags := -g -Wall -Werror
+cflags := -g -Wall -Werror -fopenmp
 cflags += -O3
-lflags := -g -lz
+lflags := -g -lz -fopenmp
 
 k1-cflags := -Iinclude
 k1-lflags := -Llib
