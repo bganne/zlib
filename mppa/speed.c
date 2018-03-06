@@ -76,7 +76,7 @@ static int comp(void *out, int olen, z_stream *strm, const void *in, int ilen)
 
 static int test(void)
 {
-	char buf[BUFLEN];
+	static __thread char buf[BUFLEN];
 	z_stream strm;
 
 	int err = init(&strm);
@@ -106,7 +106,7 @@ int main(void)
 		printf("[%i] Compressed %uB to %luB (ratio = %04.4g%%) in %lli cycles (%04.4gc/B, %gGbps)\n",
 				(int)omp_get_thread_num(),
 				SZ, len, (100.0*len)/SZ, cy,
-				(double)cy/SZ, (8.*SZ)/(cy/_K1_CPU_FREQ));
+				(double)cy/SZ, (8.*SZ*_K1_CPU_FREQ)/(1e9*cy));
 	}	/* end of parallel */
 	return 0;
 }
