@@ -7,17 +7,10 @@
 #define NUM		10
 #define BUFLEN	16384
 #define THREADS	16
-#define FREQ	0.4
-
-#define CYCLE_NS	(1/FREQ)
 
 #ifdef __k1__
-#include <HAL/hal/hal.h>
-#define STACKSZ	(20*1024)
-#define CONFIGURE_MINIMUM_TASK_STACK_SIZE	STACKSZ
-#define ONFIGURE_DEFAULT_TASK_STACK_SIZE	STACKSZ
-#define CONFIGURE_AMP_MAIN_STACK_SIZE		STACKSZ
-#include <mppa/osconfig.h>
+#include <HAL/hal/core/cpu.h>
+#include <HAL/hal/cluster/dsu.h>
 #define cycles()	__k1_read_dsu_timestamp()
 #else	/* __k1__ */
 unsigned long long rdtsc(void)
@@ -110,10 +103,10 @@ int main(void)
 		long long cy = cycles() - start;
 #define SZ	(NUM*sizeof(calgary))
 #pragma omp critical
-		printf("[%i] Compressed %luB to %luB (ratio = %04.4g%%) in %lli cycles (%04.4gc/B, %gGbps)\n",
+		printf("[%i] Compressed %uB to %luB (ratio = %04.4g%%) in %lli cycles (%04.4gc/B, %gGbps)\n",
 				(int)omp_get_thread_num(),
 				SZ, len, (100.0*len)/SZ, cy,
-				(double)cy/SZ, (8*SZ)/(cy*CYCLE_NS));
+				(double)cy/SZ, (8.*SZ)/(cy/_K1_CPU_FREQ));
 	}	/* end of parallel */
 	return 0;
 }

@@ -30,11 +30,11 @@ lib/libz.a:
 	(cd .. && prefix=$$PWD/mppa CC=k1-nodeos-gcc CFLAGS="-O3 -g" ./configure --static --const --solo)
 	+make -C .. install
 
-%-sim: $(BUILD_DIR)/speed_%
+%-sim: $(BIN_DIR)/speed_%
 	k1-cluster -- ./$<
 
-%-prof: $(BUILD_DIR)/speed_%
+%-prof: $(BIN_DIR)/speed_%
 	k1-cluster --cycle-based --profile -- ./$<
 
-%-hw: $(BUILD_DIR)/speed_%
+%-hw: $(BIN_DIR)/speed_%
 	k1-jtag-runner --exec-file=Cluster0:./$< -- ./$<
